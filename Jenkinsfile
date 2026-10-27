@@ -1,24 +1,11 @@
-pipeline {
-    agent any
+stage('Check Python') {
+    steps {
+        bat 'py --version'
+    }
+}
 
-    stages {
-        stage('Checkout') {
-            steps {
-                echo 'Downloading project from GitHub'
-                checkout scm
-            }
-        }
-
-        stage('Check Python') {
-            steps {
-                bat 'python --version'
-            }
-        }
-
-        stage('Run Grade Calculator') {
-            steps {
-                bat 'python grades.py'
-            }
-        }
+stage('Run Grade Calculator') {
+    steps {
+        bat 'py grades.py'
     }
 }
